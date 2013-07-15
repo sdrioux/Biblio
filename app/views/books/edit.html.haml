@@ -1,17 +1,19 @@
-%h1 Edit Book
-
-=form_for(@book) do |b|
-  -if @book.errors.any?
-    %h2= pluralize(@book.errors.count, "error") + "prohibited this book from being saved:"
-    %ul
-      -@book.errors.full_messages.each do |msg|
-        %li= msg
-  %div= b.text_field :title, :placeholder => "Title", :autofocus => true
-  %br
-  %div= b.text_field :author, :placeholder => "Author"
-  %br
-  %div= b.text_area :description, :placeholder => "Description"
-  %br
-  %div= b.text_field :ISBN, :placeholder => "ISBN"
-  %br
-  %div= b.submit "Update Book"
+.container
+  .span6.offset3.well.myform
+    %legend Create New Book
+    =form_for @book, :html => {:multipart => true} do |b|
+      -if @book.errors.any?
+        #error_explanation
+        %h2= pluralize(@book.errors.count, "error") + "prohibited this book from being saved:"
+        %ul
+          -@book.errors.full_messages.each do |msg|
+            %li= msg
+      %div= b.text_field :title, :placeholder => "Title", :autofocus => true, class: "field span6"
+      %div= b.text_field :author, :placeholder => "Author", class: "field span6"
+      %div= b.text_area :description, :placeholder => "Description", class: "field span6", rows: "10"
+      %div= b.text_field :ISBN, :placeholder => "ISBN", class: "field span6"
+      %div= b.file_field :cover
+      %br
+      %div
+        = b.submit "Add Book", class: "btn btn-primary"
+        = link_to "Cancel", books_path, :type => "button", class: "btn"

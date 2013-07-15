@@ -4,5 +4,7 @@
 %h3=@book.ISBN
 %p=@book.description
 
+%=image_tag @book.cover_url(:thumb) if @book.cover?
+
 =link_to "Home", books_path
 =link_to "Edit", edit_book_path(@book)
