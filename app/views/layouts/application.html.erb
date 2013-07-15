@@ -7,7 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+  <div class="navbar">
+    <div class="navbar-inner">
+      <a class="brand" href="#">Biblio</a>
+      <ul class="nav pull-right">
+        <li><%= link_to "Add New Book", new_book_path %>
+        </li>
+      </ul>
+    </div>
+  </div>
 <%= yield %>
 
 </body>

@@ -1,10 +1,16 @@
-%h1=@book.title
 
-%h2=@book.author
-%h3=@book.ISBN
-%p=@book.description
+.media.mybook
+  =image_tag @book.cover_url, class: "mythumbnail pull-left media-object" if @book.cover?
+  .media-body
+    %h2.media-heading=@book.title
+    %h3
+      %em.media=@book.author
+    %h3.media=@book.ISBN
+    %p=@book.description
 
-%=image_tag @book.cover_url(:thumb) if @book.cover?
 
-=link_to "Home", books_path
-=link_to "Edit", edit_book_path(@book)
+  =link_to "Home", books_path
+  |
+  =link_to "Edit", edit_book_path(@book)
+  |
+  =link_to "Delete", book_path, method: "delete", data: { confirm: "Are you sure you want to delete this book?"}
