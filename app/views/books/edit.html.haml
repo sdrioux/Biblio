@@ -1,0 +1,17 @@
+%h1 Edit Book
+
+=form_for(@book) do |b|
+  -if @book.errors.any?
+    %h2= pluralize(@book.errors.count, "error") + "prohibited this book from being saved:"
+    %ul
+      -@book.errors.full_messages.each do |msg|
+        %li= msg
+  %div= b.text_field :title, :placeholder => "Title", :autofocus => true
+  %br
+  %div= b.text_field :author, :placeholder => "Author"
+  %br
+  %div= b.text_area :description, :placeholder => "Description"
+  %br
+  %div= b.text_field :ISBN, :placeholder => "ISBN"
+  %br
+  %div= b.submit "Update Book"
