@@ -1,21 +1,24 @@
 %h1 Books
+%div.wrapper
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Title
+        %th Author
+        %th Description
+        %th ISBN
+        %th
+    %tbody
+      -@books.each do |book|
+        %tr
+          %td=book.title
+          %td=book.author
+          %td=book.description
+          %td=book.ISBN
+          %td=link_to "Show", book
+          %td=link_to "Edit", edit_book_path(book)
+          %td=link_to "Delete", book, method: "delete"
 
-%table
-  %tr
-    %td Title
-    %td Author
-    %td Description
-    %td ISBN
-  -@books.each do |book|
-    %tr
-      %td=book.title
-      %td=book.author
-      %td=book.description
-      %td=book.ISBN
-      %td=link_to "Show", book
-      %td=link_to "Edit", edit_book_path(book)
-      %td=link_to "Delete", book, method: "delete"
 
-
-=link_to "Add New Book", new_book_path
+=link_to "Add New Book", new_book_path, class: "btn btn-primary center"
 
