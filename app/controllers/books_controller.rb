@@ -6,6 +6,7 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(params[:book])
+    @book.user = current_user
 
     if @book.save
       redirect_to @book, notice: "Book successfully created."
@@ -15,7 +16,12 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
+    if current_user.present?
+      @user = current_user.id
+      @books = Book.where(user_id: @user)
+    else
+      @books = []
+    end
   end
 
   def show

@@ -1,0 +1,28 @@
+<div class="container">
+	<div class="row">
+    <div class="span4 offset4 well">
+      <legend>Please Sign In</legend>
+      <% if flash[:notice] %>
+        <div class="alert"><%= notice %></div>
+      <% end %>
+      <% if flash[:alert] %>
+      <div class="alert alert-error"><%= alert %></div>
+      <% end %>
+
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+        <%= f.email_field :email, :autofocus => true, :placeholder => "E-Mail", class: "span4" %>
+        <%= f.password_field :password, :placeholder => "Password", class: "span4" %>
+
+        <% if devise_mapping.rememberable? -%>
+          <label class="checkbox"><%= f.check_box :remember_me %> <%= f.label :remember_me %></label>
+        <% end -%>
+
+        <%= f.submit "Sign in", class: "btn btn-info" %>
+      <% end %>
+      <div class="text-center">
+        <%= link_to "Sign Up", new_user_registration_path %>  | 
+        <%= link_to "Forgot your password?", new_user_password_path %>
+      </div>
+    </div>
+  </div>
+</div>
