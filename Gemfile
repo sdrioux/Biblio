@@ -26,6 +26,8 @@ gem 'haml-rails'
 gem 'bootstrap-sass', '~> 2.3.2.0'
 gem 'carrierwave'
 gem 'devise'
+gem 'goodreads'
+gem 'sanitize'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

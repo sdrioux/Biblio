@@ -1,12 +1,15 @@
 
 .media.mybook
-  =image_tag @book.cover_url, class: "mythumbnail pull-left media-object" if @book.cover?
+  -if @book.goodreadscover?
+    =image_tag @book.goodreadscover, class: "mythumbnail pull-left media-object"
+  -elsif @book.cover?
+    =image_tag @book.cover_url, class: "mythumbnail pull-left media-object"
   .media-body
     %h2.media-heading=@book.title
     %h3
       %em.media=@book.author
     %h3.media=@book.ISBN
-    %p=@book.description
+    %p.description=@book.description
 
 
   =link_to "Home", books_path
